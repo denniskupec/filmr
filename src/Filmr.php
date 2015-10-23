@@ -16,6 +16,8 @@ class Filmr
 	{
 		$this->imgur = new ImgurAPI();
 		$this->out = new CLImate();
+
+		$this->out->darkGray(time());
 	}
 
 	public function run()
@@ -33,7 +35,7 @@ class Filmr
 			$info = pathinfo($path);
 
 			if(in_array($info['extension'], $this->allowed_filetypes) && !in_array($file, $this->queue)) {
-				$this->out->darkGray("New image '{$file}' found!");
+				//$this->out->darkGray("New image '{$file}' found!");
 				$this->queue[] = $file;
 			}
 		}
@@ -47,7 +49,7 @@ class Filmr
 				$data = $r->getBody()->data;
 				$info = pathinfo(dirname(__DIR__) . "/images/{$value}");
 
-				$this->out->inline("\t{$value} --> ");
+				$this->out->inline("{$value} --> ");
 				$this->out->bold()->lightGreen($data->link);
 				//$this->out->lightGreen("\t\t\t Delete: http://imgur.com/delete/" . $data->deletehash);
 

@@ -8,6 +8,6 @@ $app = new Filmr\Filmr;
 while(true)
 {
 	$app->run();
-	sleep(3);
+	sleep(1);
 }
 
