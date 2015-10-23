@@ -2,3 +2,12 @@
 <?php
 
 require __DIR__ . "/vendor/autoload.php";
+
+$app = new Filmr\Filmr;
+
+while(true)
+{
+	$app->run();
+	sleep(3);
+}
+
