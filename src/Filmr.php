@@ -40,6 +40,12 @@ class Filmr
 			}
 		}
 
+		if($this->imgur->credits()->data->UserRemaining == 0) {
+			$nap = $this->imgur->credits()->data->UserReset - time();
+			$this->out->darkGray("API Limit reached. Sleeping for $nap seconds. (until reset)");
+			sleep($nap);
+		}
+
 		foreach($this->queue as $key=>$value) {
 			$r = $this->imgur->image()->upload(dirname(__DIR__) . "/images/{$value}");
 
@@ -56,6 +62,7 @@ class Filmr
 				rename(dirname(__DIR__) . "/images/{$value}", dirname(__DIR__) . "/uploaded/" . $data->id . "." . $info['extension']);
 			}
 		}
+
 	}
 
 }

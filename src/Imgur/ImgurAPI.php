@@ -27,4 +27,9 @@ class ImgurAPI
 		return new Image;
 	}
 
+	public function credits()
+	{
+		return json_decode($this->client->request("GET", "/3/credits.json")->getBody()->getContents());
+	}
+
 }
